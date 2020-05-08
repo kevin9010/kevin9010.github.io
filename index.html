@@ -167,6 +167,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/08/Linux%E4%B8%AD%E4%BD%BF%E7%94%A8ls%E4%BB%A5K%E3%80%81M%E3%80%81G%E4%B8%BA%E5%8D%95%E4%BD%8D%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Xu">
+      <meta itemprop="description" content="工作、学习共成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Xu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/08/Linux%E4%B8%AD%E4%BD%BF%E7%94%A8ls%E4%BB%A5K%E3%80%81M%E3%80%81G%E4%B8%BA%E5%8D%95%E4%BD%8D%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F/" class="post-title-link" itemprop="url">Linux中使用ls以K、M、G为单位查看文件大小</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-08 22:46:39 / Modified: 23:09:57" itemprop="dateCreated datePublished" datetime="2020-05-08T22:46:39+08:00">2020-05-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Linux中使用ls以K、M、G为单位查看文件大小"><a href="#Linux中使用ls以K、M、G为单位查看文件大小" class="headerlink" title="Linux中使用ls以K、M、G为单位查看文件大小"></a>Linux中使用ls以K、M、G为单位查看文件大小</h1><p>平常使用的<code>ls</code>指令查看只能看到文件的基本信息，但是要查看大小时，却有很多人不会，遇到这种问题，用 <code>man</code>指令就好，可以看到<code>ls</code>对应还是有非常多的指令集用于查看文件大小的，具体演示如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#man ls</span></span><br><span class="line">……</span><br><span class="line">-h, --human-readable</span><br><span class="line">                <span class="built_in">print</span> sizes <span class="keyword">in</span> human readable format (e.g., 1K 234M 2G)</span><br><span class="line">……</span><br><span class="line"><span class="comment"># ls</span></span><br><span class="line">cuss.war    nohup.out</span><br><span class="line"><span class="comment"># ls -l</span></span><br><span class="line">total 30372</span><br><span class="line">-rw-r--r--    1 root root 31051909 May 24 10:07 cuss.war</span><br><span class="line">-rw-------    1 root root          0 Mar 20 13:52 nohup.out</span><br><span class="line"><span class="comment"># ls -lh</span></span><br><span class="line">total 30M</span><br><span class="line">-rw-r--r--    1 root root 30M May 24 10:07 cuss.war</span><br><span class="line">-rw-------    1 root root     0 Mar 20 13:52 nohup.out</span><br><span class="line"><span class="comment"># ll -h</span></span><br><span class="line">total 30M</span><br><span class="line">-rw-r--r--    1 root root 30M May 24 10:07 cuss.war</span><br><span class="line">-rw-------    1 root root     0 Mar 20 13:52 nohup.out</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/28/python%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E7%9A%84object-has-no-attribute-self-%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -379,17 +457,19 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">categories</span>
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">tags</span>
+            <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
