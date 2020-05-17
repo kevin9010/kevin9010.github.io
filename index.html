@@ -167,6 +167,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/17/Matplotlib-Font-family-%E2%80%98sans-serif%E2%80%99-not-found-Falling-back-to-DejaVu-Sans%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Xu">
+      <meta itemprop="description" content="工作、学习共成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Xu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/17/Matplotlib-Font-family-%E2%80%98sans-serif%E2%80%99-not-found-Falling-back-to-DejaVu-Sans%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="post-title-link" itemprop="url">Matplotlib:Font family [‘sans-serif’] not found. Falling back to DejaVu Sans中文字体问题解决</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-17 11:15:25 / Modified: 11:42:04" itemprop="dateCreated datePublished" datetime="2020-05-17T11:15:25+08:00">2020-05-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在使用<code>python</code>进行数据分析时，难免使用中文进行图像标准，但是有一个严重的问题是：<code>matplotlib</code>原生是不支持中文的，所以在第一次使用时一般会出现中文字体缺失而报错。</p>
+<p>比如我自己在定义了一个画图函数如下（其他引用项就省略了），</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_pic</span><span class="params">(words, x, y)</span>:</span></span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    plt.plot(x, y, label=<span class="string">'interpolation'</span>)</span><br><span class="line">    plt.plot(x, func(x), label=<span class="string">'raw'</span>)</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.title(words, FontProperties=<span class="string">'SimHei'</span>)</span><br><span class="line">    <span class="comment"># plt.show()</span></span><br><span class="line">    plt.savefig(words+<span class="string">'.png'</span>)</span><br><span class="line">    plt.close(fig)</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>就会出现错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Font family [‘sans-serif’] not found. Falling back to DejaVu</span><br></pre></td></tr></table></figure>
+
+<p>其实原因很简单，原因是<code>SimHei</code>字体缺失，解决的办法如下：</p>
+<ol>
+<li><p>搜索并下载<code>SimHei</code>字体：</p>
+</li>
+<li><p>将字体移动到相应<code>matplotlib</code>包的文件夹，可以通过如下指令找到相应的文件夹路径及相应配置文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib    </span><br><span class="line">print(matplotlib.matplotlib_fname())</span><br></pre></td></tr></table></figure>
+
+<p>那么，将下载好的字体拷贝到对应的<code>.../site-packages/matplotlib/mpl-data/fonts/ttf</code>目录下，同时在对应目录下找到<code>/site-packages/matplotlib/mpl-data/matplotlibrc</code>配置文件。</p>
+</li>
+<li><p>修改<code>matplotlibrc</code>配置文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">font.family         : sans-serif        </span><br><span class="line">font.sans-serif     : SimHei, Bitstream Vera Sans, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif </span><br><span class="line">axes.unicode_minus  : <span class="literal">False</span> <span class="comment">#将True改为False，作用就是解决负号'-'显示为方块的问题</span></span><br></pre></td></tr></table></figure>
+
+<p>修改后，在home目录下，执行 ctrl + h ，打开隐藏目录， 删除 ~/.cache/matplotlib的缓冲目录</p>
+</li>
+<li><p>修改完成后，重启对应的<code>conda</code>环境，即可完成中文显示。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/08/hexo-%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -544,7 +643,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -555,7 +654,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
